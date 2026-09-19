@@ -1,0 +1,75 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "eval-forge"
+# Single-sourced from evalforge.__version__ so the CLI, the package metadata
+# and the wheel can never disagree.
+dynamic = ["version"]
+description = "Synthetic benchmark generation, debiased LLM-as-a-judge and CI regression gating."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "eval-forge contributors" }]
+keywords = ["llm", "evaluation", "benchmark", "llm-as-a-judge", "ci"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Testing",
+    "Typing :: Typed",
+]
+dependencies = [
+    "pydantic>=2.7",
+    "typer>=0.12",
+    "rich>=13.7",
+    "httpx>=0.27",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "mypy>=1.10",
+    "ruff>=0.5",
+]
+
+[project.scripts]
+evalforge = "evalforge.cli:main"
+
+[tool.hatch.version]
+path = "evalforge/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["evalforge"]
+
+[tool.hatch.build.targets.sdist]
+include = ["evalforge", "tests", "fixtures", "README.md", "LICENSE"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+# TestCase/TestSuite are domain models, not pytest classes.
+python_classes = ["Check*"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["evalforge", "tests"]
+warn_unreachable = true
+show_error_codes = true
+
+[[tool.mypy.overrides]]
+module = ["httpx.*"]
+ignore_missing_imports = true
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

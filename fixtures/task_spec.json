@@ -1,0 +1,22 @@
+{
+  "name": "gtm-cold-outbound",
+  "purpose": "Write a first-touch cold outbound email that earns a 15 minute discovery call.",
+  "audience": "VP of Engineering at a Series B SaaS company with 50-300 employees",
+  "tone": "direct, peer-to-peer, zero hype, no superlatives",
+  "hard_constraints": [
+    "Under 120 words",
+    "Do not mention pricing",
+    "Never mention 'discount'",
+    "Must include the phrase '15 minutes'"
+  ],
+  "seed_topics": [
+    "flaky CI pipelines blocking release trains",
+    "on-call burnout after a doubling of alert volume",
+    "staging environments that drift from production",
+    "a six week onboarding ramp for backend hires",
+    "incident review notes that never turn into fixes",
+    "feature flag debt nobody owns",
+    "a monolith split that stalled halfway",
+    "observability spend growing faster than headcount"
+  ]
+}

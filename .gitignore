@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# Run artefacts written at the repo root. Anchored with a leading slash so they
+# do not also swallow the committed fixtures/ copies of the same filenames.
+/eval_results.json
+/eval_report.md
+/test_suite.json
+.env
