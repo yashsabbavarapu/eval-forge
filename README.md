@@ -1,5 +1,7 @@
 # eval-forge
 
+[![CI](https://github.com/yashsabbavarapu/eval-forge/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/yashsabbavarapu/eval-forge/actions/workflows/ci.yml?query=branch%3Amain)
+
 A synthetic benchmark generator, a position-debiased LLM-as-a-judge, and a
 statistical CI gate for prompt changes.
 
