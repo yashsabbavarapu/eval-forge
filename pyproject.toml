@@ -57,7 +57,9 @@ addopts = "-q"
 python_classes = ["Check*"]
 
 [tool.mypy]
-python_version = "3.11"
+# No python_version pin: CI runs a 3.11/3.12/3.13 matrix, so mypy should
+# check against the interpreter actually running it. Pinning 3.11 makes
+# mypy reject 3.12+ syntax inside third-party stubs (e.g. numpy).
 strict = true
 files = ["evalforge", "tests"]
 warn_unreachable = true
