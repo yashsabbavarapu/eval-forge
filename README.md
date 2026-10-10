@@ -94,6 +94,44 @@ you to read the run as two populations rather than one.
 
 ---
 
+## Quickstart
+
+No API key needed. This runs the full CI gate offline against the bundled fixtures:
+
+```bash
+python -m evalforge.cli check \
+  --candidate fixtures/prompt_v2.txt \
+  --baseline fixtures/prompt_v1.txt \
+  --offline --count 8
+```
+
+Real output, 8 cases in about 2 seconds on CPU:
+
+```
+| candidate win rate               | 100.0% (95% CI 67.6% - 100.0%) |
+| mean rubric delta                | +1.790 (95% bootstrap CI ...)  |
+| permutation p-value              | 0.0082 (alpha = 0.05)          |
+| statistically significant        | yes                            |
+| Cohen's kappa (order vs swapped) | 1.000                          |
+| positional bias rate             | 0.0%                           |
+```
+
+And the scorecard it writes (`eval_report.md`):
+
+```markdown
+**Verdict: CANDIDATE WINS** (permutation p = 0.0082, alpha = 0.05)
+
+| metric | value |
+| --- | --- |
+| test cases | 8 |
+| candidate win rate | 100.0% (95% CI 67.6% - 100.0%) |
+| mean rubric delta | +1.790 (95% bootstrap CI +1.380 - +2.177) |
+| Cohen's kappa (order vs swapped) | 1.000 |
+| positional bias rate | 0.0% |
+```
+
+Full sample at [`fixtures/sample_scorecard.md`](fixtures/sample_scorecard.md).
+
 ## Pipeline
 
 ```
